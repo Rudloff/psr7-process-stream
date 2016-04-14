@@ -18,12 +18,10 @@ class PopenStream extends Stream
     public function close()
     {
         $stream = $this->detach();
-        if (isset($stream)) {
-            if (is_resource($stream)) {
-                //pclose() triggers an I/O error if the stream has never been read
-                fread($stream, 1);
-                pclose($stream);
-            }
+        if (isset($stream) && is_resource($stream)) {
+            //pclose() triggers an I/O error if the stream has never been read
+            fread($stream, 1);
+            pclose($stream);
         }
     }
 }
