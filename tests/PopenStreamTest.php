@@ -16,4 +16,16 @@ class PopenStreamTest extends \PHPUnit_Framework_TestCase
         $stream = new PopenStream('echo "foo"', 'r');
         $this->assertTrue($stream->isReadable());
     }
+
+    public function testClose()
+    {
+        $stream = new PopenStream('echo "foo"', 'r');
+        $stream->close();
+
+        $this->assertFalse($stream->isSeekable());
+        $this->assertFalse($stream->isReadable());
+        $this->assertFalse($stream->isWritable());
+        $this->assertNull($stream->getSize());
+        $this->assertEmpty($stream->getMetadata());
+    }
 }
