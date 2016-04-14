@@ -5,7 +5,7 @@ use GuzzleHttp\Psr7\Stream;
 
 class PopenStream extends Stream
 {
-    public function __construct($cmd, $mode='r')
+    public function __construct($cmd, $mode = 'r')
     {
         parent::__construct(popen($cmd, $mode));
     }
@@ -14,5 +14,4 @@ class PopenStream extends Stream
     {
         return null;
     }
-
 }
